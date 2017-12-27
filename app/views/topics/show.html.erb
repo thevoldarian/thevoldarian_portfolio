@@ -1,0 +1,13 @@
+<div class="col-sm-8 blog-main">
+  <h1><%= @topic.title %></h1>
+  if logged_in?(:site_admin) || @blog.published?
+      @blog = Blog.includes(:comments).friendly.find(params[:id])
+      @comment = Comment.new
+      @page_title = "Rails test site | #{@blog.title}"
+      @seo_keywords = @blog.body
+    else
+      redirect_to blogs_path, notice:"You are not authorized to access the requested page :("
+    end
+</div>
+
+

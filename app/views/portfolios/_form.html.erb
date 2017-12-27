@@ -1,0 +1,55 @@
+<%= form_for(@portfolio_item) do |f| %>
+  <% if @portfolio_item.errors.any? %>
+    <% @portfolio_item.errors.full_messages.each do |error| %>
+      <%= alert_generator error %>
+    <% end %>
+  <% end %>
+
+ <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label "Title" %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Subtitle" %>
+        <%= f.text_area :subtitle, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <label class="btn btn-primary">
+          Upload a main image file <%= f.file_field :main_image, style: 'display:none;'%>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="btn btn-primary">
+          Upload a thumb image file <%= f.file_field :thumb_image, style: 'display:none;'%>
+        </label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label "Body" %>
+        <%= f.text_area :body, class: 'form-control', rows: 15 %>
+      </div>
+    </div>
+
+  <hr>
+  
+    <div class="col-md-12">
+      <h3>Technologies Used:</h3>
+      <div>
+        <%= f.fields_for :technologies do |technology_form| %>
+          <%= render 'technology_fields', f: technology_form %>
+        <% end %>
+        <div>
+          <%= link_to_add_association 'Add Technology', f, :technologies %>
+          <hr>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.submit class:'btn btn-primary btn-block' %>
+      </div>
+    </div>
+ 
+  </div>
+<% end %>

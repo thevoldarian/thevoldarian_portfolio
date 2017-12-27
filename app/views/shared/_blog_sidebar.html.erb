@@ -1,0 +1,23 @@
+<aside class="col-sm-3 ml-sm-auto blog-sidebar">
+  <div class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p>I dont use <em>any </em> social media sites really. But the icons below look nice, eh?</p>
+  </div>
+    <%= source_helper("alert alert-info blog-sidebar-source") %>
+  <div class="sidebar-module">
+    <h4>Topics</h4>
+    <% @side_bar_topics.each do |topic| %>
+      <p><%= link_to topic.title, topic_path(topic) %></p>
+    <% end %>
+  </div>
+  <div class="sidebar-module">
+    <h4>Social Facade</h4>
+    <ol class="list-unstyled social-links">
+      <li><a href="#"><%= fa_icon "github" %></a></li>
+      <li><a href="#"><%= fa_icon "facebook" %></a></li>
+      <li><a href="#"><%= fa_icon "twitter" %></a></li>
+      <li><a href="#"><%= fa_icon "google-plus" %></a></li>
+
+    </ol>
+  </div>
+</aside>
